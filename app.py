@@ -1,4 +1,4 @@
-# Code copied from here https://github.com/randyzwitch/streamlit-folium/blob/master/examples/interactive_app.py
+
 import streamlit as st
 import gcsfs
 import duckdb,json
@@ -25,7 +25,7 @@ GOOGLE_APPLICATION_CREDENTIALS = service_account.Credentials.from_service_accoun
 
 from pyarrow import parquet
 fs = gcsfs.GCSFileSystem()
-@st.experimental_memo(ttl=600)
+
 def Read_GCP() :
                  dx = parquet.ParquetDataset("gs://test_delta1/scada",
                             filesystem=fs, 
