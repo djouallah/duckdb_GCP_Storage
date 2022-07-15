@@ -1,3 +1,4 @@
 gcsfs
 streamlit
 duckdb
+google-auth
