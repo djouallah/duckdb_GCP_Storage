@@ -26,13 +26,13 @@ GOOGLE_APPLICATION_CREDENTIALS = service_account.Credentials.from_service_accoun
 from pyarrow import parquet
 fs = gcsfs.GCSFileSystem()
 
-def Read_GCP() :
+def Read_GCP(fs) :
                  dx = parquet.ParquetDataset("test_delta1/scada",
                             filesystem=fs, 
                             validate_schema=False).read()
                  con = duckdb.connect(database='db')
                  con.execute("create or replace table Import as SELECT * FROM dx").close()
 
-Read_GCP()
+Read_GCP(fs)
 
 
