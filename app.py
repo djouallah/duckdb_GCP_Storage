@@ -1,4 +1,3 @@
-
 import streamlit as st
 import gcsfs
 import duckdb,json
@@ -20,16 +19,18 @@ except :
 
 ################################################### Download Data from BigQuery#####################################################
 # Retrieve and convert key file content.
-key_json = json.loads(st.secrets["key"], strict=False)
+key_json = json.loads(st.secrets["key_GCP"], strict=False)
 GOOGLE_APPLICATION_CREDENTIALS = service_account.Credentials.from_service_account_info(key_json)
 
 from pyarrow import parquet
-fs = gcsfs.GCSFileSystem()
 
-dx = parquet.ParquetDataset("test_delta1/scada",validate_schema=False, filesystem=fs).read()
+@st.experimental_memo(ttl=4000)
+def Read_GCP(path) :
+                fs = gcsfs.GCSFileSystem()
+                tb = parquet.ParquetDataset(path, filesystem=fs, validate_schema=False).read()
+                return tb
+                 
+
+scada=Read_GCP("test_delta1/scada")
 con = duckdb.connect(database='db')
-con.execute("create or replace table Import as SELECT * FROM dx").close()
-
-
-
-
+con.execute("create or replace table Import as SELECT * FROM scada").close()
