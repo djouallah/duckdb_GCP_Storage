@@ -1,6 +1,4 @@
 pyarrow == 8.0.0
 gcsfs
-streamlit
-duckdb
+Duckdb --pre
 google-auth
-google-cloud-storage
