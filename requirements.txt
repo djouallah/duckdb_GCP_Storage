@@ -1,5 +1,5 @@
 pyarrow == 8.0.0
 gcsfs
 streamlit
-duckdb
+duckdb > 0.4.0
 google-auth
