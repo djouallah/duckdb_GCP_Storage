@@ -1,4 +1,3 @@
-pyarrow == 8.0.0
 gcsfs
-Duckdb --pre
+Duckdb
 google-auth
