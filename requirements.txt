@@ -1,3 +1,5 @@
-gcsfs
-Duckdb
-google-auth
+gcsfs==0.3.0
+duckdb==0.4.1.dev710
+streamlit==1.11.0
+pyarrow==8.0.0
+protobuf==4.21.2
