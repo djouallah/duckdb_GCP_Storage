@@ -27,13 +27,11 @@ from pyarrow import parquet
 fs = gcsfs.GCSFileSystem()
 
 def Read_GCP() :
-                 dx = parquet.ParquetDataset("gs://test_delta1/scada",
+                 dx = parquet.ParquetDataset("test_delta1/scada",
                             filesystem=fs, 
-                            validate_schema=False, 
-                           filters=[('Date','=', '2022-07-14')])
-                 df = dx.read().to_pandas()
+                            validate_schema=False).read()
                  con = duckdb.connect(database='db')
-                 con.execute("create or replace table Import as SELECT * FROM df").close()
+                 con.execute("create or replace table Import as SELECT * FROM dx").close()
 
 Read_GCP()
 
