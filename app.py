@@ -31,6 +31,6 @@ def Read_GCP(path) :
                 return tb
                  
 
-scada=Read_GCP("test_delta1/scada")
+scada=Read_GCP("gs://test_delta1/scada")
 con = duckdb.connect(database='db')
 con.execute("create or replace table Import as SELECT * FROM scada").close()
