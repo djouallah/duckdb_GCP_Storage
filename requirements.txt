@@ -1,5 +1,5 @@
-gcsfs
+pyarrow==9.0.0
 duckdb
-google.oauth
-pyarrow
-streamlit
+gcsfs==2022.7.1
+streamlit==1.11.0
+protobuf==4.21.4
