@@ -1,4 +1,3 @@
 pyarrow==9.0.0
-duckdb
-gcsfs==2022.7.1
-protobuf==4.21.4
+duckdb >= 0.4.0
+deltalake==0.5.8
