@@ -1,9 +1,7 @@
 import streamlit as st
 from  deltalake import DeltaTable
 import os
-import gcsfs
 import duckdb,json
-from google.oauth2 import service_account
 
 try :
 
