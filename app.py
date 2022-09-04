@@ -1,4 +1,6 @@
 import streamlit as st
+from  deltalake import DeltaTable
+import os
 import gcsfs
 import duckdb,json
 from google.oauth2 import service_account
@@ -19,15 +21,13 @@ except :
 
 ################################################### Download Data from BigQuery#####################################################
 # Retrieve and convert key file content.
-key_json = json.loads(st.secrets["key_GCP"], strict=False)
-GOOGLE_APPLICATION_CREDENTIALS = service_account.Credentials.from_service_account_info(key_json)
+os.environ["SERVICE_ACCOUNT"] = json.loads(st.secrets["key_GCP"], strict=False)
 
 from pyarrow import parquet
 
 @st.experimental_memo(ttl=4000)
 def Read_GCP(path) :
-                fs = gcsfs.GCSFileSystem()
-                tb = parquet.ParquetDataset(path, filesystem=fs, validate_schema=False).read()
+                tb = DeltaTable(path).to_pyarrow_dataset()
                 return tb
                  
 
