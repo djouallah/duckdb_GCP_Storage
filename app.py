@@ -19,7 +19,7 @@ except :
 
 ################################################### Download Data from BigQuery#####################################################
 # Retrieve and convert key file content.
-os.environ["SERVICE_ACCOUNT"] == st.secrets["key_GCP"]
+os.environ["SERVICE_ACCOUNT"] == st.json(st.secrets["key_GCP"])
 
 from pyarrow import parquet
 
